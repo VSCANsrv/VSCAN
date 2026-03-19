@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://vscansrv.github.io/VSCAN/sitemap.xml
+Sitemap: https://vscan.com.tw/sitemap.xml
