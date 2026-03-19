@@ -676,4 +676,36 @@ article.content {
     window.addEventListener('scroll', checkScroll);
     // 重新載入時也檢查一次，避免重新整理後樣式跑掉
     checkScroll();
-})();</script></body></html>
+})();</script>//EmaiJS表單設定<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script><script type="text/javascript">(function () {
+    emailjs.init("_AqAXpuJ7Z2wla46T");
+  })();
+
+  // 檢查頁面是否有表單，避免在沒有表單的頁面報錯
+  document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("vscan-contact-form");
+      if (form) {
+          form.addEventListener("submit", function (event) {
+              event.preventDefault();
+              const btn = document.getElementById("submit-btn");
+              const status = document.getElementById("form-status");
+
+              btn.innerText = "傳送中...";
+              btn.disabled = true;
+
+              emailjs.sendForm("service_j9auhhp", "template_xjxgb6r", this).then(
+                function () {
+                  status.style.color = "#28a745";
+                  status.innerText = "✅ 謝謝您的來信，我們已收到訊息！";
+                  btn.innerText = "傳送成功";
+                  form.reset();
+                },
+                function (error) {
+                  status.style.color = "#dc3545";
+                  status.innerText = "❌ 傳送失敗，請稍後再試。";
+                  btn.innerText = "重試傳送";
+                  btn.disabled = false;
+                }
+              );
+          });
+      }
+  });</script></body></html>
